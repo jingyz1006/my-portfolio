@@ -74,8 +74,6 @@ lenis.on('scroll', (e) => {
 // 4. Hero 动画入场
 document.addEventListener("DOMContentLoaded", (event) => {
     // Hero 区域文字揭示
-    gsap.set(".gs-reveal", { y: 50, opacity: 0, filter: "blur(10px)" });
-    
     const tl = gsap.timeline();
     
     // 背景图缓动缩放淡入
@@ -84,19 +82,25 @@ document.addEventListener("DOMContentLoaded", (event) => {
         { scale: 1, opacity: 0.8, filter: "blur(0px)", duration: 2, ease: "power3.out" }
     );
     
-    tl.to("#hero .gs-reveal", {
-        y: 0,
-        opacity: 1,
-        filter: "blur(0px)",
-        duration: 1,
-        stagger: 0.15,
-        ease: "power3.out",
-        delay: 0.2
-    });
+    tl.fromTo("#hero .gs-reveal", 
+        { y: 50, opacity: 0, filter: "blur(10px)" },
+        {
+            y: 0,
+            opacity: 1,
+            filter: "blur(0px)",
+            duration: 1,
+            stagger: 0.15,
+            ease: "power3.out",
+            delay: 0.2
+        }
+    );
 
     // 5. 滚动揭示动画 (L2-L3)
-    const revealElements = document.querySelectorAll("section:not(#hero) .gs-reveal");
+    const revealElements = document.querySelectorAll("section:not(#hero) .gs-reveal, footer .gs-reveal");
     revealElements.forEach((el) => {
+        // Set initial state for scroll elements
+        gsap.set(el, { y: 50, opacity: 0, filter: "blur(10px)" });
+        
         gsap.to(el, {
             scrollTrigger: {
                 trigger: el,
