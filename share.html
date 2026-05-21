@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Share - AI Media</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: { extend: { colors: { bg: '#05030A', textMain: '#F0F0F0', highlight: '#B16BFF' } } }
+        }
+    </script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-bg text-textMain antialiased">
+    <div id="glow-tracker"></div>
+    <nav class="fixed top-0 left-0 w-full z-50 py-4 px-8 md:px-16 flex justify-between items-center bg-[rgba(5,3,10,0.7)] backdrop-blur-md border-b border-[rgba(255,255,255,0.05)]">
+        <a href="index.html" class="flex items-center gap-2 group">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-highlight)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            <span class="text-xl font-bold tracking-tight text-textMain group-hover:text-highlight transition-colors duration-300" style="font-family: 'Space Grotesk', sans-serif;">AI.Media</span>
+        </a>
+    </nav>
+    <header class="min-h-screen flex flex-col justify-center px-8 md:px-24 relative z-10">
+        <h1 class="text-5xl md:text-7xl font-bold gradient-text mb-8 gs-reveal" style="font-family: 'Space Grotesk', sans-serif;">Share</h1>
+        <p class="text-xl text-gray-400 max-w-xl gs-reveal">Daily AI updates and real-time tech news from around the globe. Loading...</p>
+    </header>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

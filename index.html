@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>AI Media - Portfolio & Blog</title>
+    
+    <!-- Google Fonts: Space Grotesk & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Config to map DESIGN.md Variables -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        bg: 'var(--color-bg)',
+                        surface: 'var(--color-surface)',
+                        borderLine: 'var(--color-border)',
+                        textMain: 'var(--color-text)',
+                        muted: 'var(--color-text-muted)',
+                        highlight: 'var(--color-highlight)',
+                        accent: 'var(--color-accent)'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-bg text-textMain antialiased selection:bg-highlight selection:text-white">
+
+    <!-- 全局背景光效跟踪 -->
+    <div id="glow-tracker"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full z-50 py-4 px-8 md:px-16 flex justify-between items-center transition-all duration-300" id="navbar">
+        <a href="#hero" class="flex items-center gap-2 group">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-highlight)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            <span class="text-xl font-display font-bold tracking-tight text-textMain group-hover:text-highlight transition-colors duration-300">AI.Media</span>
+        </a>
+        <div class="hidden md:flex gap-8 text-sm font-medium tracking-wide items-center glass-card px-8 py-3 rounded-full !border-none">
+            <a href="#articles" class="hover:text-highlight transition-colors duration-300">Articles</a>
+            <a href="#gallery" class="hover:text-highlight transition-colors duration-300">Gallery</a>
+            <a href="#share" class="hover:text-highlight transition-colors duration-300">Share</a>
+            <a href="#about" class="hover:text-highlight transition-colors duration-300">About</a>
+            <a href="download.html" class="hover:text-highlight transition-colors duration-300">Download</a>
+        </div>
+        <div class="hidden md:flex gap-4">
+            <a href="#about" class="btn-outline text-sm">Contact</a>
+            <a href="gallery.html" class="btn-primary text-sm flex items-center gap-2">Explore <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+        <button class="md:hidden text-textMain focus:outline-none">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="min-h-screen flex flex-col justify-center px-8 md:px-24 pt-20 relative overflow-hidden" id="hero">
+        
+        <!-- 背景层/主图 -->
+        <div class="absolute right-[-10%] top-1/2 transform -translate-y-1/2 w-[70%] max-w-4xl opacity-80 pointer-events-none gs-hero-img flex justify-center items-center" style="z-index: 1;">
+            <img src="/Users/jing/.cursor/projects/Users-jing-Desktop/assets/hero-purple-3d.png" alt="Hero 3D Abstract Glass" class="w-full h-auto" style="mask-image: radial-gradient(circle at center, black 20%, transparent 70%); -webkit-mask-image: radial-gradient(circle at center, black 20%, transparent 70%);">
+            <div class="absolute inset-0" style="background: radial-gradient(circle at center, transparent 30%, var(--color-bg) 70%);"></div>
+        </div>
+
+        <!-- Conveyor Belt Animations -->
+        <div class="absolute right-[-5%] top-[25%] w-[65%] h-[50%] pointer-events-auto z-20 hidden lg:flex flex-col justify-center gap-10" id="floating-pills">
+            <!-- Track 1 -->
+            <div class="conveyor-container transform -rotate-6">
+                <div class="conveyor-track flex gap-6 pb-4">
+                    <a href="articles.html" class="glass-card px-6 py-3 rounded-full flex items-center gap-3 whitespace-nowrap shadow-[0_0_15px_rgba(177,107,255,0.15)] hover:border-highlight transition-colors cursor-pointer bg-[rgba(5,3,10,0.6)]">
+                        <span class="text-highlight text-lg">✦</span> <span class="text-sm font-medium text-textMain">Articles</span>
+                    </a>
+                    <a href="gallery.html" class="glass-card px-6 py-3 rounded-full flex items-center gap-3 whitespace-nowrap shadow-[0_0_15px_rgba(94,234,212,0.1)] hover:border-accent transition-colors cursor-pointer bg-[rgba(5,3,10,0.6)]">
+                        <span class="text-accent text-lg">✓</span> <span class="text-sm font-medium text-textMain">Gallery</span>
+                    </a>
+                    <a href="share.html" class="glass-card px-6 py-3 rounded-full flex items-center gap-3 whitespace-nowrap shadow-[0_0_15px_rgba(177,107,255,0.15)] hover:border-highlight transition-colors cursor-pointer bg-[rgba(5,3,10,0.6)]">
+                        <span class="text-highlight text-lg">📷</span> <span class="text-sm font-medium text-textMain">Share</span>
+                    </a>
+                    <a href="about.html" class="glass-card px-6 py-3 rounded-full flex items-center gap-3 whitespace-nowrap shadow-[0_0_15px_rgba(94,234,212,0.1)] hover:border-accent transition-colors cursor-pointer bg-[rgba(5,3,10,0.6)]">
+                        <span class="text-accent text-lg">🚀</span> <span class="text-sm font-medium text-textMain">About Me</span>
+                    </a>
+                    <!-- Duplicates for loop -->
+                    <a href="articles.html" class="glass-card px-6 py-3 rounded-full flex items-center gap-3 whitespace-nowrap shadow-[0_0_15px_rgba(177,107,255,0.15)] hover:border-highlight transition-colors cursor-pointer bg-[rgba(5,3,10,0.6)]">
+                        <span class="text-highlight text-lg">✦</span> <span class="text-sm font-medium text-textMain">Articles</span>
+                    </a>
+                    <a href="gallery.html" class="glass-card px-6 py-3 rounded-full flex items-center gap-3 whitespace-nowrap shadow-[0_0_15px_rgba(94,234,212,0.1)] hover:border-accent transition-colors cursor-pointer bg-[rgba(5,3,10,0.6)]">
+                        <span class="text-accent text-lg">✓</span> <span class="text-sm font-medium text-textMain">Gallery</span>
+                    </a>
+                    <a href="share.html" class="glass-card px-6 py-3 rounded-full flex items-center gap-3 whitespace-nowrap shadow-[0_0_15px_rgba(177,107,255,0.15)] hover:border-highlight transition-colors cursor-pointer bg-[rgba(5,3,10,0.6)]">
+                        <span class="text-highlight text-lg">📷</span> <span class="text-sm font-medium text-textMain">Share</span>
+                    </a>
+                    <a href="about.html" class="glass-card px-6 py-3 rounded-full flex items-center gap-3 whitespace-nowrap shadow-[0_0_15px_rgba(94,234,212,0.1)] hover:border-accent transition-colors cursor-pointer bg-[rgba(5,3,10,0.6)]">
+                        <span class="text-accent text-lg">🚀</span> <span class="text-sm font-medium text-textMain">About Me</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Track 2 -->
+            <div class="conveyor-container transform rotate-3 ml-12">
+                <div class="conveyor-track reverse flex gap-6 pb-4">
+                    <a href="gallery.html" class="glass-card px-6 py-3 rounded-full flex items-center gap-3 whitespace-nowrap shadow-[0_0_15px_rgba(94,234,212,0.1)] hover:border-accent transition-colors cursor-pointer bg-[rgba(5,3,10,0.6)]">
+                        <span class="text-accent text-lg">⚡</span> <span class="text-sm font-medium text-textMain">Visual Arts</span>
+                    </a>
+                    <a href="articles.html" class="glass-card px-6 py-3 rounded-full flex items-center gap-3 whitespace-nowrap shadow-[0_0_15px_rgba(177,107,255,0.15)] hover:border-highlight transition-colors cursor-pointer bg-[rgba(5,3,10,0.6)]">
+                        <span class="text-highlight text-lg">🎯</span> <span class="text-sm font-medium text-textMain">Deep Insights</span>
+                    </a>
+                    <a href="share.html" class="glass-card px-6 py-3 rounded-full flex items-center gap-3 whitespace-nowrap shadow-[0_0_15px_rgba(94,234,212,0.1)] hover:border-accent transition-colors cursor-pointer bg-[rgba(5,3,10,0.6)]">
+                        <span class="text-accent text-lg">⏱️</span> <span class="text-sm font-medium text-textMain">Daily Tech</span>
+                    </a>
+                    <a href="about.html" class="glass-card px-6 py-3 rounded-full flex items-center gap-3 whitespace-nowrap shadow-[0_0_15px_rgba(177,107,255,0.15)] hover:border-highlight transition-colors cursor-pointer bg-[rgba(5,3,10,0.6)]">
+                        <span class="text-highlight text-lg">✉️</span> <span class="text-sm font-medium text-textMain">Get in Touch</span>
+                    </a>
+                    <!-- Duplicates -->
+                    <a href="gallery.html" class="glass-card px-6 py-3 rounded-full flex items-center gap-3 whitespace-nowrap shadow-[0_0_15px_rgba(94,234,212,0.1)] hover:border-accent transition-colors cursor-pointer bg-[rgba(5,3,10,0.6)]">
+                        <span class="text-accent text-lg">⚡</span> <span class="text-sm font-medium text-textMain">Visual Arts</span>
+                    </a>
+                    <a href="articles.html" class="glass-card px-6 py-3 rounded-full flex items-center gap-3 whitespace-nowrap shadow-[0_0_15px_rgba(177,107,255,0.15)] hover:border-highlight transition-colors cursor-pointer bg-[rgba(5,3,10,0.6)]">
+                        <span class="text-highlight text-lg">🎯</span> <span class="text-sm font-medium text-textMain">Deep Insights</span>
+                    </a>
+                    <a href="share.html" class="glass-card px-6 py-3 rounded-full flex items-center gap-3 whitespace-nowrap shadow-[0_0_15px_rgba(94,234,212,0.1)] hover:border-accent transition-colors cursor-pointer bg-[rgba(5,3,10,0.6)]">
+                        <span class="text-accent text-lg">⏱️</span> <span class="text-sm font-medium text-textMain">Daily Tech</span>
+                    </a>
+                    <a href="about.html" class="glass-card px-6 py-3 rounded-full flex items-center gap-3 whitespace-nowrap shadow-[0_0_15px_rgba(177,107,255,0.15)] hover:border-highlight transition-colors cursor-pointer bg-[rgba(5,3,10,0.6)]">
+                        <span class="text-highlight text-lg">✉️</span> <span class="text-sm font-medium text-textMain">Get in Touch</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-4xl relative z-10 pointer-events-none">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card text-xs font-medium text-highlight mb-8 gs-reveal">
+                <span class="w-2 h-2 rounded-full bg-highlight animate-pulse"></span>
+                Digital & AI Portfolio
+            </div>
+            
+            <h1 class="font-display text-5xl md:text-7xl lg:text-[6rem] leading-[1.05] tracking-tight mb-4 font-bold gs-reveal">
+                Stop Chasing Trends.<br>
+                Start <span class="gradient-text">Building Them.</span>
+            </h1>
+            
+            <!-- Tyopgraphic Banner -->
+            <div class="mt-4 mb-8 gs-reveal">
+                <p class="font-display text-2xl md:text-4xl italic text-textMain opacity-90 tracking-wider">
+                    "Joyful youth zests"
+                </p>
+                <div class="w-24 h-[1px] bg-highlight mt-4 opacity-50"></div>
+            </div>
+
+            <p class="text-lg md:text-xl text-muted max-w-xl font-light leading-relaxed mb-10 gs-reveal">
+                Focusing on generative art, cutting-edge tech insights, and digital interactive experiences. Breaking the boundaries of imagination through extreme design aesthetics.
+            </p>
+
+            <div class="flex gap-4 gs-reveal pointer-events-auto">
+                <a href="#gallery" class="btn-primary flex items-center gap-2">Explore Gallery <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            </div>
+        </div>
+        
+    </header>
+
+    <!-- Articles Preview -->
+    <section id="articles" class="py-32 px-8 md:px-24 border-t border-borderLine relative">
+        <div class="mb-20 gs-reveal">
+            <h2 class="text-highlight text-sm font-bold uppercase tracking-widest mb-4">Deep Insights</h2>
+            <h3 class="font-display text-4xl md:text-5xl font-bold">The Path to Next-Gen Media</h3>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <a href="articles.html" class="glass-card spotlight-card p-8 group gs-reveal tilt-card block cursor-pointer">
+                <div class="w-12 h-12 rounded-xl bg-[rgba(177,107,255,0.1)] flex items-center justify-center mb-6 text-highlight group-hover:scale-110 transition-transform">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                </div>
+                <h4 class="font-display text-2xl font-bold mb-4 text-textMain group-hover:text-highlight transition-colors">Generative Art</h4>
+                <p class="text-muted text-sm leading-relaxed">
+                    Exploring the boundaries of Stable Diffusion and Midjourney to create surreal, hyper-realistic, and imaginative visual narratives.
+                </p>
+            </a>
+
+            <a href="articles.html" class="glass-card spotlight-card p-8 group gs-reveal tilt-card block cursor-pointer" style="transition-delay: 0.1s;">
+                <div class="w-12 h-12 rounded-xl bg-[rgba(177,107,255,0.1)] flex items-center justify-center mb-6 text-highlight group-hover:scale-110 transition-transform">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                </div>
+                <h4 class="font-display text-2xl font-bold mb-4 text-textMain group-hover:text-highlight transition-colors">Web Experiences</h4>
+                <p class="text-muted text-sm leading-relaxed">
+                    Building living, breathing websites. Interaction design and UI/UX that blends aesthetics with smooth, performant functionality.
+                </p>
+            </a>
+
+            <a href="articles.html" class="glass-card spotlight-card p-8 group gs-reveal tilt-card block cursor-pointer" style="transition-delay: 0.2s;">
+                <div class="w-12 h-12 rounded-xl bg-[rgba(177,107,255,0.1)] flex items-center justify-center mb-6 text-highlight group-hover:scale-110 transition-transform">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                </div>
+                <h4 class="font-display text-2xl font-bold mb-4 text-textMain group-hover:text-highlight transition-colors">AI Agents</h4>
+                <p class="text-muted text-sm leading-relaxed">
+                    Industry observations on LLMs, agentic workflows, and how automation is redefining content creation.
+                </p>
+            </a>
+        </div>
+    </section>
+
+    <!-- Gallery Section (Diagonal Scroll without pin) -->
+    <section id="gallery" class="bg-bg border-t border-borderLine relative overflow-hidden py-32 min-h-[120vh]">
+        <div class="px-8 md:px-24 relative z-30 pointer-events-none mb-32 gs-reveal">
+            <h2 class="text-highlight text-sm font-bold uppercase tracking-widest mb-4">Visual Portfolio</h2>
+            <h3 class="font-display text-4xl md:text-6xl font-bold">Immersive Gallery</h3>
+            <p class="text-muted mt-4 max-w-md">Scroll to journey through algorithms and aesthetics. A collection of AI-generated landscapes and digital art.</p>
+            <div class="mt-8 pointer-events-auto">
+                <a href="gallery.html" class="btn-outline inline-flex items-center gap-2 group hover:bg-highlight hover:text-white hover:border-highlight transition-all">
+                    Enter Full Gallery
+                    <svg class="transform group-hover:translate-x-1 transition-transform" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- The diagonal track -->
+        <div id="gallery-track-wrapper" class="absolute w-[300vw] left-[0] transform rotate-[-10deg] pointer-events-none origin-top-left flex items-center" style="top: 40%;">
+            <div id="gallery-track" class="flex gap-16 px-[20vw] items-center">
+                <!-- Dynamic Images -->
+                <div class="gallery-item w-[40vw] md:w-[25vw] aspect-[4/5] glass-card p-2 rounded-[2rem] flex-shrink-0 pointer-events-auto cursor-pointer transition-transform duration-300" onclick="window.location.href='gallery.html'">
+                    <img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?w=800&q=80" alt="Gallery Art" class="w-full h-full object-cover rounded-[1.5rem]">
+                </div>
+                <div class="gallery-item w-[40vw] md:w-[25vw] aspect-[4/5] glass-card p-2 rounded-[2rem] flex-shrink-0 pointer-events-auto cursor-pointer transition-transform duration-300" onclick="window.location.href='gallery.html'">
+                    <img src="https://images.unsplash.com/photo-1614729939124-032f0b56c9ce?w=800&q=80" alt="Gallery Art" class="w-full h-full object-cover rounded-[1.5rem]">
+                </div>
+                <div class="gallery-item w-[40vw] md:w-[25vw] aspect-[4/5] glass-card p-2 rounded-[2rem] flex-shrink-0 pointer-events-auto cursor-pointer transition-transform duration-300" onclick="window.location.href='gallery.html'">
+                    <img src="https://images.unsplash.com/photo-1634152962476-4b8a00e1915c?w=800&q=80" alt="Gallery Art" class="w-full h-full object-cover rounded-[1.5rem]">
+                </div>
+                <div class="gallery-item w-[40vw] md:w-[25vw] aspect-[4/5] glass-card p-2 rounded-[2rem] flex-shrink-0 pointer-events-auto cursor-pointer transition-transform duration-300" onclick="window.location.href='gallery.html'">
+                    <img src="https://images.unsplash.com/photo-1633511090164-b4a1b08c6bf0?w=800&q=80" alt="Gallery Art" class="w-full h-full object-cover rounded-[1.5rem]">
+                </div>
+                <div class="gallery-item w-[40vw] md:w-[25vw] aspect-[4/5] glass-card p-2 rounded-[2rem] flex-shrink-0 pointer-events-auto cursor-pointer transition-transform duration-300" onclick="window.location.href='gallery.html'">
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&q=80" alt="Gallery Art" class="w-full h-full object-cover rounded-[1.5rem]">
+                </div>
+                <div class="gallery-item w-[40vw] md:w-[25vw] aspect-[4/5] glass-card p-2 rounded-[2rem] flex-shrink-0 pointer-events-auto cursor-pointer transition-transform duration-300" onclick="window.location.href='gallery.html'">
+                    <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?w=800&q=80" alt="Gallery Art" class="w-full h-full object-cover rounded-[1.5rem]">
+                </div>
+                <div class="gallery-item w-[40vw] md:w-[25vw] aspect-[4/5] glass-card p-2 rounded-[2rem] flex-shrink-0 pointer-events-auto cursor-pointer transition-transform duration-300" onclick="window.location.href='gallery.html'">
+                    <img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?w=800&q=80" alt="Gallery Art" class="w-full h-full object-cover rounded-[1.5rem]">
+                </div>
+                <div class="gallery-item w-[40vw] md:w-[25vw] aspect-[4/5] glass-card p-2 rounded-[2rem] flex-shrink-0 pointer-events-auto cursor-pointer transition-transform duration-300" onclick="window.location.href='gallery.html'">
+                    <img src="https://images.unsplash.com/photo-1614729939124-032f0b56c9ce?w=800&q=80" alt="Gallery Art" class="w-full h-full object-cover rounded-[1.5rem]">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Share (AI News API Fetch) -->
+    <section id="share" class="py-32 px-8 md:px-24 border-t border-borderLine relative bg-[rgba(177,107,255,0.02)]">
+        <div class="mb-16 md:flex justify-between items-end gs-reveal">
+            <div>
+                <h2 class="text-highlight text-sm font-bold uppercase tracking-widest mb-4">Share & Discover</h2>
+                <h3 class="font-display text-4xl md:text-5xl font-bold mb-4">Daily AI Intel</h3>
+                <p class="text-muted">Real-time industry updates from global tech sources.</p>
+            </div>
+            <div class="mt-6 md:mt-0">
+                <a href="share.html" class="text-xs tracking-widest uppercase border-b border-borderLine pb-1 inline-block text-muted hover:text-highlight transition-colors">View All Updates</a>
+            </div>
+        </div>
+
+        <!-- News Container -->
+        <div id="news-container" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Injecting Skeleton Loader via JS -->
+            <div class="glass-card p-8 animate-pulse">
+                <div class="h-4 bg-[rgba(255,255,255,0.1)] rounded w-1/4 mb-4"></div>
+                <div class="h-6 bg-[rgba(255,255,255,0.1)] rounded w-3/4 mb-4"></div>
+                <div class="h-4 bg-[rgba(255,255,255,0.1)] rounded w-full mb-2"></div>
+                <div class="h-4 bg-[rgba(255,255,255,0.1)] rounded w-5/6"></div>
+            </div>
+            <div class="glass-card p-8 animate-pulse">
+                <div class="h-4 bg-[rgba(255,255,255,0.1)] rounded w-1/4 mb-4"></div>
+                <div class="h-6 bg-[rgba(255,255,255,0.1)] rounded w-3/4 mb-4"></div>
+                <div class="h-4 bg-[rgba(255,255,255,0.1)] rounded w-full mb-2"></div>
+                <div class="h-4 bg-[rgba(255,255,255,0.1)] rounded w-5/6"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About & Footer Section -->
+    <section id="about" class="py-32 px-8 md:px-24 border-t border-borderLine flex flex-col justify-between min-h-[80vh] relative">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-32">
+            <div>
+                <h2 class="font-display text-4xl md:text-6xl mb-12 leading-tight font-bold gs-reveal">Let's build<br><span class="gradient-text">the future together.</span></h2>
+                <a href="mailto:hello@aimedia.com" class="inline-block text-2xl font-bold border-b border-[rgba(255,255,255,0.2)] pb-2 hover:text-highlight hover:border-highlight transition-all duration-300 gs-reveal">hello@aimedia.com</a>
+            </div>
+            
+            <div class="flex flex-col justify-between gs-reveal">
+                <div class="text-lg text-muted font-light leading-relaxed mb-12">
+                    <p class="mb-6">I'm a digital designer and frontend developer exploring the intersections of generative AI and interactive web experiences.</p>
+                    <p>In an era of rapid technological shifts, I strive to design living, breathing digital products that resonate with human emotion, merging dark mode aesthetics with seamless motion.</p>
+                </div>
+                
+                <div class="flex flex-wrap gap-6 text-sm tracking-wide uppercase font-medium">
+                    <a href="about.html" class="btn-outline">About Me</a>
+                    <a href="download.html" class="btn-outline text-highlight border-[rgba(177,107,255,0.3)]">Downloads</a>
+                    <a href="#" class="btn-outline">Twitter (X)</a>
+                    <a href="#" class="btn-outline">GitHub</a>
+                </div>
+            </div>
+        </div>
+        
+        <footer class="mt-32 pt-8 border-t border-borderLine flex flex-col md:flex-row justify-between items-center text-sm text-muted">
+            <p>&copy; 2026 AI Media Portfolio. All rights reserved.</p>
+            <p class="mt-4 md:mt-0 tracking-widest uppercase text-xs flex items-center gap-2">
+                Designed with <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> AI Media
+            </p>
+        </footer>
+    </section>
+
+    <!-- Lenis, GSAP, and Custom Scripts -->
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

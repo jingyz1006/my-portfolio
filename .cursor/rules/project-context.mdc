@@ -1,0 +1,29 @@
+---
+description: "Core context and design rules for the AI Media Personal Website"
+globs: "*"
+---
+
+# Project Context: AI Media Personal Website
+
+## 1. 核心定位 (Project Identity)
+- **项目名称**: AI行业自媒体个人网站 (Portfolio & Blog)
+- **作者身份**: AI 行业创作者 / 媒体人
+- **核心内容**: 
+  1. 我的文章 (AI相关深度内容、洞察)
+  2. 摄影集 (人文/生活记录，视觉表达)
+  3. AI作品 (视觉/生成艺术，展现前沿审美)
+  4. 个人介绍 (履历、价值观与联系方式)
+
+## 2. 设计规范记忆 (Design System)
+- **基调**: 极简画廊编辑风 (Minimalist Editorial)
+- **排版**: 强烈的留白，衬线体 (如 Newsreader) 与无衬线体 (如 Geist/Inter) 混排，营造优雅的数字杂志感。
+- **色彩**: 温暖纸张色底 (`#FDFCF9`) + 墨黑文字 (`#1C1C1C`) + 极少量的强调色以点缀科技感。
+- **动效约束**: 仅使用 L2 级别流畅交互（丝滑滚动、轻微视差图片、优雅渐显），严禁滥用复杂的 WebGL 或引起性能卡顿的动画。
+
+## 3. 开发架构指导 (Dev Guidelines)
+- **样式准则**: 必须严格读取项目根目录下的 `DESIGN.md`，所有颜色必须使用 CSS 变量，不可硬编码 Hex 值。
+- **组件架构**: 保持结构精简，不要过度封装。重点开发 `ArticleList`、`GalleryGrid`、`WorkShowcase` 等展示型组件。
+- **响应式**: 默认移动端优先 (Mobile-first)，桌面端大胆应用非对称画廊排版。
+
+## 4. 持续维护说明 (Maintenance)
+- 当项目引入新的页面类型、更新品牌色、或调整核心业务定位时，请 AI 助手自动同步更新本文件的内容，以保持项目的长期记忆正确性。
