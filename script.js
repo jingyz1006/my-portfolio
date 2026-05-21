@@ -200,49 +200,50 @@ document.addEventListener("DOMContentLoaded", (event) => {
         repeat: -1
     });
 
-/* Web Audio API 音效交互 (Premium High-Tech UI Sounds) */
+/* Web Audio API 音效交互 (Retro 8-bit) */
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
-    function createHighTechSound(type, startFreq, endFreq, duration, vol) {
+    function playTone(type, startFreq, endFreq, duration, vol) {
         if (audioCtx.state === 'suspended') audioCtx.resume();
+        const t = audioCtx.currentTime;
+        
         const osc = audioCtx.createOscillator();
-        const gainNode = audioCtx.createGain();
+        const gain = audioCtx.createGain();
         
         osc.type = type;
-        osc.frequency.setValueAtTime(startFreq, audioCtx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(endFreq, audioCtx.currentTime + duration);
+        osc.frequency.setValueAtTime(startFreq, t);
+        if (endFreq && startFreq !== endFreq) {
+            osc.frequency.exponentialRampToValueAtTime(endFreq, t + duration);
+        }
         
-        gainNode.gain.setValueAtTime(vol, audioCtx.currentTime);
-        // 快速衰减制造出"滴"的清脆科技感
-        gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+        gain.gain.setValueAtTime(vol, t);
+        gain.gain.exponentialRampToValueAtTime(0.001, t + duration);
         
-        osc.connect(gainNode);
-        gainNode.connect(audioCtx.destination);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
         
-        osc.start();
-        osc.stop(audioCtx.currentTime + duration);
+        osc.start(t);
+        osc.stop(t + duration);
     }
 
     function playHoverSound() {
-        // 轻盈的科技感高频滑音
-        createHighTechSound('sine', 1200, 800, 0.05, 0.03);
+        // 微复古电音：短促跳跃方波，极低音量
+        playTone('square', 440, 660, 0.08, 0.02);
     }
 
     function playClickSound() {
-        // 深沉的确认音 (Bloop)
-        createHighTechSound('sine', 600, 150, 0.15, 0.1);
-        // 叠加一个高频的瞬态咔嗒声增加质感
-        createHighTechSound('square', 2000, 1000, 0.03, 0.02);
+        // 微复古电音：干脆确认音
+        playTone('square', 440, 880, 0.15, 0.03);
     }
 
-    // Scroll tick sound (极短促轻微的高频咔嗒声)
+    // Scroll tick sound 
     let lastTickTime = 0;
     function playScrollTick() {
         const now = audioCtx.currentTime;
         if (now - lastTickTime < 0.08) return; // 限制触发频率
         lastTickTime = now;
         
-        createHighTechSound('sine', 2500, 1500, 0.02, 0.015);
+        playTone('square', 880, 880, 0.04, 0.01);
     }
 
     document.querySelectorAll('a, button, .glass-card, .btn-primary, .btn-outline').forEach(el => {
@@ -304,45 +305,82 @@ document.addEventListener("DOMContentLoaded", (event) => {
         updateGalleryScale();
     }
 
-    // AI News Fetch (Fallback to reliable mock if API fails/CORS blocks)
-    const newsContainer = document.getElementById('news-container');
+    // AI News Fetch (Fetch AIGCLIST via CORS Proxy)
+    const newsContainer = document.getElementById('aigc-container');
     if (newsContainer) {
         const fetchNews = async () => {
             try {
-                const res = await fetch('https://api.rss2json.com/v1/api.json?rss_url=https://techcrunch.com/category/artificial-intelligence/feed/');
+                // Using a public CORS proxy to fetch the HTML content
+                const res = await fetch('https://api.allorigins.win/get?url=' + encodeURIComponent('https://aigclist.com/blog'));
                 const data = await res.json();
-                if (data && data.items && data.items.length > 0) {
-                    renderNews(data.items.slice(0, 4));
+                
+                if (data && data.contents) {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(data.contents, 'text/html');
+                    
+                    // AIGCLIST blog structure: looking for h3 tags that represent article titles
+                    const headings = doc.querySelectorAll('h3');
+                    const articles = [];
+                    
+                    headings.forEach(h3 => {
+                        const a = h3.querySelector('a') || h3.closest('a');
+                        if (h3.textContent && a && a.href) {
+                            // Extract title
+                            const title = h3.textContent.trim();
+                            // Fix relative links
+                            let link = a.getAttribute('href');
+                            if (link.startsWith('/')) {
+                                link = 'https://aigclist.com' + link;
+                            }
+                            
+                            // Optional: find date
+                            const dateEl = h3.nextElementSibling?.nextElementSibling;
+                            const pubDate = dateEl && dateEl.textContent.match(/\d{4}\/\d{2}\/\d{2}/) ? dateEl.textContent.trim() : new Date().toLocaleDateString();
+
+                            articles.push({
+                                title: title,
+                                link: link,
+                                pubDate: pubDate,
+                                description: "Explore the latest insights and guides on AI tools and trends directly from AIGCLIST."
+                            });
+                        }
+                    });
+
+                    if (articles.length > 0) {
+                        renderNews(articles.slice(0, 4));
+                    } else {
+                        throw new Error("Could not parse articles from AIGCLIST.");
+                    }
                 } else {
-                    throw new Error("Empty data");
+                    throw new Error("Empty data from proxy");
                 }
             } catch (err) {
-                console.warn("Real-time fetch failed, loading curated AI intel fallbacks", err);
-                // Hardcoded fallback data that looks real and matches the design
+                console.warn("Real-time AIGCLIST fetch failed, loading curated fallbacks", err);
+                // Hardcoded fallback data based on AIGCLIST content
                 const mockData = [
                     {
-                        link: "share.html",
-                        pubDate: new Date().toISOString(),
-                        title: "OpenAI introduces new agentic reasoning frameworks",
-                        description: "The latest update aims to provide seamless multi-step reasoning capabilities for large language models, allowing them to autonomously navigate complex environments."
+                        link: "https://aigclist.com/blog/motion-control-ai-for-video-generation",
+                        pubDate: "2026/04/28",
+                        title: "Motion Control AI for Video Generation: When You Need Control Instead of Guesswork",
+                        description: "Discover how motion control AI is revolutionizing video generation by providing precise control over camera movements."
                     },
                     {
-                        link: "share.html",
-                        pubDate: new Date(Date.now() - 86400000).toISOString(),
-                        title: "Midjourney v6.1 pushes the boundaries of photorealism",
-                        description: "Artists and designers are exploring the nuanced texture generation and improved prompt adherence in the latest iteration of the popular image synthesis model."
+                        link: "https://aigclist.com/blog/best-motion-control-ai-tools",
+                        pubDate: "2026/04/28",
+                        title: "Best Motion Control AI Tools for Video, Camera Movement, and Animation",
+                        description: "A comprehensive guide to the top AI tools for mastering motion control in your creative workflows."
                     },
                     {
-                        link: "share.html",
-                        pubDate: new Date(Date.now() - 172800000).toISOString(),
-                        title: "How Web Audio API and GSAP are shaping next-gen immersive UI",
-                        description: "Web developers are increasingly relying on native audio synthesis and smooth scroll integrations to create digital experiences that feel alive."
+                        link: "https://aigclist.com/blog/square-face-avatar-generator",
+                        pubDate: "2026/04/28",
+                        title: "Square Face Avatar Generator: What to Look For Before You Pick One",
+                        description: "Everything you need to know about selecting the right AI tool to generate square-faced avatars and PFPs."
                     },
                     {
-                        link: "share.html",
-                        pubDate: new Date(Date.now() - 259200000).toISOString(),
-                        title: "The rise of Dark Tech & Glassmorphism in SaaS platforms",
-                        description: "UI trends for 2026 show a strong pivot towards extreme dark modes, glowing neon accents, and stacked frosted glass layers for tech-forward products."
+                        link: "https://aigclist.com/blog/why-the-next-ai-micro-businesses-won-t-look-like-startups",
+                        pubDate: "2026/03/20",
+                        title: "Why the Next AI Micro-Businesses Won’t Look Like Startups",
+                        description: "An deep dive into how AI micro-businesses are shifting paradigms and redefining the startup landscape."
                     }
                 ];
                 renderNews(mockData);
@@ -352,12 +390,12 @@ document.addEventListener("DOMContentLoaded", (event) => {
         const renderNews = (articles) => {
             newsContainer.innerHTML = '';
             articles.forEach((item) => {
-                const date = new Date(item.pubDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
                 newsContainer.innerHTML += `
-                    <a href="${item.link}" target="_blank" class="glass-card p-8 group gs-reveal block cursor-pointer hover:border-highlight transition-colors">
-                        <div class="text-xs text-highlight tracking-widest uppercase mb-3">${date}</div>
+                    <a href="${item.link}" target="_blank" class="glass-card p-8 group gs-reveal block cursor-pointer hover:border-highlight transition-colors relative overflow-hidden">
+                        <div class="absolute inset-0 bg-highlight opacity-0 group-hover:opacity-5 transition-opacity duration-300"></div>
+                        <div class="text-xs text-highlight tracking-widest uppercase mb-3">${item.pubDate}</div>
                         <h4 class="font-display text-xl font-bold mb-3 text-textMain group-hover:text-highlight transition-colors">${item.title}</h4>
-                        <p class="text-muted text-sm line-clamp-2">${item.description.replace(/<[^>]*>?/gm, '')}</p>
+                        <p class="text-muted text-sm line-clamp-2">${item.description}</p>
                     </a>
                 `;
             });

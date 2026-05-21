@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 
 :root {
   --color-bg: #05030A;
@@ -12,6 +12,7 @@
 
   --font-display: 'Space Grotesk', sans-serif;
   --font-body: 'Inter', sans-serif;
+  --font-script: 'Great Vibes', cursive;
 }
 
 /* 基础重置 */
@@ -52,6 +53,10 @@ body {
 /* 文字与标题 */
 h1, h2, h3, h4, h5, h6, .font-display {
   font-family: var(--font-display);
+}
+
+.font-script {
+  font-family: var(--font-script);
 }
 
 .text-muted {
@@ -213,5 +218,4 @@ h1, h2, h3, h4, h5, h6, .font-display {
 /* Reveal Init */
 .gs-reveal, .gs-fade {
   opacity: 0;
-  visibility: hidden;
 }

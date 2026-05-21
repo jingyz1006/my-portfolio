@@ -153,11 +153,10 @@
             </h1>
             
             <!-- Tyopgraphic Banner -->
-            <div class="mt-4 mb-8 gs-reveal">
-                <p class="font-display text-2xl md:text-4xl italic text-textMain opacity-90 tracking-wider">
-                    "Joyful youth zests"
+            <div class="mt-8 mb-12 gs-reveal relative">
+                <p class="font-script text-6xl md:text-8xl text-highlight opacity-80 tracking-wide" style="text-shadow: 0 0 20px rgba(177,107,255,0.4);">
+                    Joyful youth zests
                 </p>
-                <div class="w-24 h-[1px] bg-highlight mt-4 opacity-50"></div>
             </div>
 
             <p class="text-lg md:text-xl text-muted max-w-xl font-light leading-relaxed mb-10 gs-reveal">
@@ -212,7 +211,7 @@
     </section>
 
     <!-- Gallery Section (Diagonal Scroll without pin) -->
-    <section id="gallery" class="bg-bg border-t border-borderLine relative overflow-hidden py-32 min-h-[120vh]">
+    <section id="gallery" class="bg-bg border-t border-borderLine relative overflow-hidden py-32 min-h-[150vh]">
         <div class="px-8 md:px-24 relative z-30 pointer-events-none mb-32 gs-reveal">
             <h2 class="text-highlight text-sm font-bold uppercase tracking-widest mb-4">Visual Portfolio</h2>
             <h3 class="font-display text-4xl md:text-6xl font-bold">Immersive Gallery</h3>
@@ -225,48 +224,48 @@
             </div>
         </div>
 
-        <!-- The diagonal track -->
-        <div id="gallery-track-wrapper" class="absolute w-[300vw] left-[0] transform rotate-[-10deg] pointer-events-none origin-top-left flex items-center" style="top: 40%;">
-            <div id="gallery-track" class="flex gap-16 px-[20vw] items-center">
+        <!-- The diagonal track container -->
+        <div id="gallery-scroll-container" class="absolute w-[300vw] left-[0] transform rotate-[-8deg] pointer-events-none origin-top-left flex items-center" style="top: 35%;">
+            <div id="gallery-track" class="flex gap-12 px-[10vw] items-center">
                 <!-- Dynamic Images -->
-                <div class="gallery-item w-[40vw] md:w-[25vw] aspect-[4/5] glass-card p-2 rounded-[2rem] flex-shrink-0 pointer-events-auto cursor-pointer transition-transform duration-300" onclick="window.location.href='gallery.html'">
+                <div class="gallery-item w-[45vw] md:w-[28vw] aspect-[4/5] glass-card p-2 rounded-[2rem] flex-shrink-0 pointer-events-auto cursor-pointer transition-transform duration-300 hover:border-highlight" onclick="window.location.href='gallery.html'">
                     <img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?w=800&q=80" alt="Gallery Art" class="w-full h-full object-cover rounded-[1.5rem]">
                 </div>
-                <div class="gallery-item w-[40vw] md:w-[25vw] aspect-[4/5] glass-card p-2 rounded-[2rem] flex-shrink-0 pointer-events-auto cursor-pointer transition-transform duration-300" onclick="window.location.href='gallery.html'">
+                <div class="gallery-item w-[45vw] md:w-[28vw] aspect-[4/5] glass-card p-2 rounded-[2rem] flex-shrink-0 pointer-events-auto cursor-pointer transition-transform duration-300 hover:border-highlight" onclick="window.location.href='gallery.html'">
                     <img src="https://images.unsplash.com/photo-1614729939124-032f0b56c9ce?w=800&q=80" alt="Gallery Art" class="w-full h-full object-cover rounded-[1.5rem]">
                 </div>
-                <div class="gallery-item w-[40vw] md:w-[25vw] aspect-[4/5] glass-card p-2 rounded-[2rem] flex-shrink-0 pointer-events-auto cursor-pointer transition-transform duration-300" onclick="window.location.href='gallery.html'">
+                <div class="gallery-item w-[45vw] md:w-[28vw] aspect-[4/5] glass-card p-2 rounded-[2rem] flex-shrink-0 pointer-events-auto cursor-pointer transition-transform duration-300 hover:border-highlight" onclick="window.location.href='gallery.html'">
                     <img src="https://images.unsplash.com/photo-1634152962476-4b8a00e1915c?w=800&q=80" alt="Gallery Art" class="w-full h-full object-cover rounded-[1.5rem]">
                 </div>
-                <div class="gallery-item w-[40vw] md:w-[25vw] aspect-[4/5] glass-card p-2 rounded-[2rem] flex-shrink-0 pointer-events-auto cursor-pointer transition-transform duration-300" onclick="window.location.href='gallery.html'">
+                <div class="gallery-item w-[45vw] md:w-[28vw] aspect-[4/5] glass-card p-2 rounded-[2rem] flex-shrink-0 pointer-events-auto cursor-pointer transition-transform duration-300 hover:border-highlight" onclick="window.location.href='gallery.html'">
                     <img src="https://images.unsplash.com/photo-1633511090164-b4a1b08c6bf0?w=800&q=80" alt="Gallery Art" class="w-full h-full object-cover rounded-[1.5rem]">
                 </div>
-                <div class="gallery-item w-[40vw] md:w-[25vw] aspect-[4/5] glass-card p-2 rounded-[2rem] flex-shrink-0 pointer-events-auto cursor-pointer transition-transform duration-300" onclick="window.location.href='gallery.html'">
+                <div class="gallery-item w-[45vw] md:w-[28vw] aspect-[4/5] glass-card p-2 rounded-[2rem] flex-shrink-0 pointer-events-auto cursor-pointer transition-transform duration-300 hover:border-highlight" onclick="window.location.href='gallery.html'">
                     <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&q=80" alt="Gallery Art" class="w-full h-full object-cover rounded-[1.5rem]">
                 </div>
-                <div class="gallery-item w-[40vw] md:w-[25vw] aspect-[4/5] glass-card p-2 rounded-[2rem] flex-shrink-0 pointer-events-auto cursor-pointer transition-transform duration-300" onclick="window.location.href='gallery.html'">
+                <div class="gallery-item w-[45vw] md:w-[28vw] aspect-[4/5] glass-card p-2 rounded-[2rem] flex-shrink-0 pointer-events-auto cursor-pointer transition-transform duration-300 hover:border-highlight" onclick="window.location.href='gallery.html'">
                     <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?w=800&q=80" alt="Gallery Art" class="w-full h-full object-cover rounded-[1.5rem]">
                 </div>
-                <div class="gallery-item w-[40vw] md:w-[25vw] aspect-[4/5] glass-card p-2 rounded-[2rem] flex-shrink-0 pointer-events-auto cursor-pointer transition-transform duration-300" onclick="window.location.href='gallery.html'">
+                <div class="gallery-item w-[45vw] md:w-[28vw] aspect-[4/5] glass-card p-2 rounded-[2rem] flex-shrink-0 pointer-events-auto cursor-pointer transition-transform duration-300 hover:border-highlight" onclick="window.location.href='gallery.html'">
                     <img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?w=800&q=80" alt="Gallery Art" class="w-full h-full object-cover rounded-[1.5rem]">
                 </div>
-                <div class="gallery-item w-[40vw] md:w-[25vw] aspect-[4/5] glass-card p-2 rounded-[2rem] flex-shrink-0 pointer-events-auto cursor-pointer transition-transform duration-300" onclick="window.location.href='gallery.html'">
+                <div class="gallery-item w-[45vw] md:w-[28vw] aspect-[4/5] glass-card p-2 rounded-[2rem] flex-shrink-0 pointer-events-auto cursor-pointer transition-transform duration-300 hover:border-highlight" onclick="window.location.href='gallery.html'">
                     <img src="https://images.unsplash.com/photo-1614729939124-032f0b56c9ce?w=800&q=80" alt="Gallery Art" class="w-full h-full object-cover rounded-[1.5rem]">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Share (AI News API Fetch) -->
+    <!-- Share (AIGCLIST Blog Embed) -->
     <section id="share" class="py-32 px-8 md:px-24 border-t border-borderLine relative bg-[rgba(177,107,255,0.02)]">
         <div class="mb-16 md:flex justify-between items-end gs-reveal">
             <div>
                 <h2 class="text-highlight text-sm font-bold uppercase tracking-widest mb-4">Share & Discover</h2>
-                <h3 class="font-display text-4xl md:text-5xl font-bold mb-4">Daily AI Intel</h3>
-                <p class="text-muted">Real-time industry updates from global tech sources.</p>
+                <h3 class="font-display text-4xl md:text-5xl font-bold mb-4">AIGCLIST Blog</h3>
+                <p class="text-muted">Real-time AI insights directly fetched from aigclist.com/blog.</p>
             </div>
             <div class="mt-6 md:mt-0">
-                <a href="share.html" class="text-xs tracking-widest uppercase border-b border-borderLine pb-1 inline-block text-muted hover:text-highlight transition-colors">View All Updates</a>
+                <a href="https://aigclist.com/blog" target="_blank" class="text-xs tracking-widest uppercase border-b border-borderLine pb-1 inline-block text-muted hover:text-highlight transition-colors">Visit AIGCLIST</a>
             </div>
         </div>
 

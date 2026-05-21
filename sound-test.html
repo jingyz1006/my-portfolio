@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>音效测试页面 (终极版) - AI.Media</title>
+    <style>
+        body {
+            background-color: #05030A;
+            color: #fff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            margin: 0;
+            padding: 40px 20px;
+            box-sizing: border-box;
+        }
+        h1 {
+            color: #B16BFF;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        .desc {
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 40px;
+            text-align: center;
+            max-width: 800px;
+            line-height: 1.6;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 1200px;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .card h2 {
+            margin-top: 0;
+            font-size: 1.1rem;
+            color: #5EEAD4;
+            margin-bottom: 8px;
+        }
+        .card p {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 20px;
+            line-height: 1.4;
+            flex-grow: 1;
+        }
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        button {
+            background: transparent;
+            color: white;
+            border: 1px solid rgba(177, 107, 255, 0.4);
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.85rem;
+        }
+        button:hover {
+            background: rgba(177, 107, 255, 0.1);
+            border-color: #B16BFF;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>UI 交互音效试听 (十大方案)</h1>
+    <p class="desc">我一口气为您制作了 10 种跨度极大的音效方案。涵盖了自然界、极简主义、物理敲击、微复古等各类风格，去掉了让人烦躁的元素。<br>请随意试听，总有一款能完美匹配您的紫黑科技感网站。</p>
+
+    <div class="container">
+        <!-- 方案 1 -->
+        <div class="card">
+            <h2>01. 灵动水滴 (Water Drop)</h2>
+            <p>频率快速上升的纯净正弦波，像水滴落入水面的“啵”声，轻快且有生机。</p>
+            <div class="btn-group">
+                <button onmouseenter="playTone('sine', 400, 600, 0.08, 0.06)" onclick="playTone('sine', 300, 800, 0.12, 0.1)">悬停 / 点击</button>
+                <button onclick="playTone('sine', 600, 800, 0.03, 0.04)">滑动 (Scroll)</button>
+            </div>
+        </div>
+
+        <!-- 方案 2 -->
+        <div class="card">
+            <h2>02. 沉闷心跳 (Sub Heartbeat)</h2>
+            <p>只保留百赫兹以下的超低频率，如同心跳或厚重棉花的闷声碰撞，极其克制。</p>
+            <div class="btn-group">
+                <button onmouseenter="playTone('sine', 100, 80, 0.1, 0.08)" onclick="playTone('sine', 120, 60, 0.2, 0.15)">悬停 / 点击</button>
+                <button onclick="playTone('sine', 90, 70, 0.05, 0.05)">滑动 (Scroll)</button>
+            </div>
+        </div>
+
+        <!-- 方案 3 -->
+        <div class="card">
+            <h2>03. 玻璃清脆 (Glass Ping)</h2>
+            <p>高频正弦波，衰减时间较长。仿佛水晶杯轻轻碰杯的余音，极其清脆透明。</p>
+            <div class="btn-group">
+                <button onmouseenter="playTone('sine', 1200, 1200, 0.3, 0.03)" onclick="playTone('sine', 1500, 1500, 0.5, 0.05)">悬停 / 点击</button>
+                <button onclick="playTone('sine', 1800, 1800, 0.1, 0.02)">滑动 (Scroll)</button>
+            </div>
+        </div>
+
+        <!-- 方案 4 -->
+        <div class="card">
+            <h2>04. 机械键盘 (Mech Switch)</h2>
+            <p>方波，但时间被压缩到几毫秒。类似优质机械键盘红轴敲击时的物理干脆感。</p>
+            <div class="btn-group">
+                <button onmouseenter="playTone('square', 800, 800, 0.015, 0.02)" onclick="playTone('square', 600, 600, 0.03, 0.04)">悬停 / 点击</button>
+                <button onclick="playTone('square', 1000, 1000, 0.01, 0.01)">滑动 (Scroll)</button>
+            </div>
+        </div>
+
+        <!-- 方案 5 -->
+        <div class="card">
+            <h2>05. 柔和气泡 (Soft Bubble)</h2>
+            <p>相比水滴更加闷和柔和的中低频，如同水底冒出的细腻小气泡。</p>
+            <div class="btn-group">
+                <button onmouseenter="playTone('sine', 200, 250, 0.08, 0.05)" onclick="playTone('sine', 150, 300, 0.15, 0.08)">悬停 / 点击</button>
+                <button onclick="playTone('sine', 300, 350, 0.04, 0.03)">滑动 (Scroll)</button>
+            </div>
+        </div>
+
+        <!-- 方案 6 -->
+        <div class="card">
+            <h2>06. 微复古电音 (Retro 8-bit)</h2>
+            <p>带有极小幅度跳跃感的方波，致敬早期红白机的 UI 音效，但音量非常温和。</p>
+            <div class="btn-group">
+                <button onmouseenter="playTone('square', 440, 660, 0.08, 0.02)" onclick="playTone('square', 440, 880, 0.15, 0.03)">悬停 / 点击</button>
+                <button onclick="playTone('square', 880, 880, 0.04, 0.01)">滑动 (Scroll)</button>
+            </div>
+        </div>
+
+        <!-- 方案 7 -->
+        <div class="card">
+            <h2>07. 木质敲击 (Wooden Block)</h2>
+            <p>利用三角波频率下降的特性，模拟小木槌敲击空心木鱼的质感，自然且有机。</p>
+            <div class="btn-group">
+                <button onmouseenter="playTone('triangle', 500, 200, 0.06, 0.05)" onclick="playTone('triangle', 400, 100, 0.1, 0.08)">悬停 / 点击</button>
+                <button onclick="playTone('triangle', 600, 300, 0.03, 0.03)">滑动 (Scroll)</button>
+            </div>
+        </div>
+
+        <!-- 方案 8 -->
+        <div class="card">
+            <h2>08. 银铃微风 (Silver Bell)</h2>
+            <p>多重高频正弦波融合，犹如非常微小的银铃在风中晃动，极具治愈和呼吸感。</p>
+            <div class="btn-group">
+                <button onmouseenter="playDualTone('sine', 1200, 1600, 0.2, 0.02, 0.01)" onclick="playDualTone('sine', 1000, 1500, 0.4, 0.04, 0.02)">悬停 / 点击</button>
+                <button onclick="playTone('sine', 2000, 2000, 0.1, 0.01)">滑动 (Scroll)</button>
+            </div>
+        </div>
+
+        <!-- 方案 9 -->
+        <div class="card">
+            <h2>09. 极简颗粒 (Minimal Tick)</h2>
+            <p>极高频但时间极短的三角波。只有类似高级手表的极其细微的滴答颗粒感。</p>
+            <div class="btn-group">
+                <button onmouseenter="playTone('triangle', 1500, 1500, 0.01, 0.02)" onclick="playTone('triangle', 1000, 1000, 0.02, 0.04)">悬停 / 点击</button>
+                <button onclick="playTone('triangle', 2000, 2000, 0.005, 0.01)">滑动 (Scroll)</button>
+            </div>
+        </div>
+
+        <!-- 方案 10 -->
+        <div class="card">
+            <h2>10. 科技扫频 (Sci-Fi Sweep)</h2>
+            <p>平滑的高频向低频滑落，如同科幻电影里控制面板扫描成功时的反馈音效。</p>
+            <div class="btn-group">
+                <button onmouseenter="playTone('sine', 1000, 200, 0.1, 0.05)" onclick="playTone('sine', 2000, 100, 0.2, 0.08)">悬停 / 点击</button>
+                <button onclick="playTone('sine', 800, 400, 0.05, 0.03)">滑动 (Scroll)</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        function playTone(type, startFreq, endFreq, duration, vol) {
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+            const t = audioCtx.currentTime;
+            
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            
+            osc.type = type;
+            osc.frequency.setValueAtTime(startFreq, t);
+            if (endFreq && startFreq !== endFreq) {
+                osc.frequency.exponentialRampToValueAtTime(endFreq, t + duration);
+            }
+            
+            gain.gain.setValueAtTime(vol, t);
+            gain.gain.exponentialRampToValueAtTime(0.001, t + duration);
+            
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            
+            osc.start(t);
+            osc.stop(t + duration);
+        }
+
+        // 用于播放和弦（如银铃双音）
+        function playDualTone(type, freq1, freq2, duration, vol1, vol2) {
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+            const t = audioCtx.currentTime;
+            
+            const osc1 = audioCtx.createOscillator();
+            const gain1 = audioCtx.createGain();
+            osc1.type = type;
+            osc1.frequency.setValueAtTime(freq1, t);
+            gain1.gain.setValueAtTime(vol1, t);
+            gain1.gain.exponentialRampToValueAtTime(0.001, t + duration);
+            osc1.connect(gain1);
+            gain1.connect(audioCtx.destination);
+            osc1.start(t);
+            osc1.stop(t + duration);
+
+            const osc2 = audioCtx.createOscillator();
+            const gain2 = audioCtx.createGain();
+            osc2.type = type;
+            osc2.frequency.setValueAtTime(freq2, t);
+            gain2.gain.setValueAtTime(vol2, t);
+            gain2.gain.exponentialRampToValueAtTime(0.001, t + duration);
+            osc2.connect(gain2);
+            gain2.connect(audioCtx.destination);
+            osc2.start(t);
+            osc2.stop(t + duration);
+        }
+    </script>
+</body>
+</html>
