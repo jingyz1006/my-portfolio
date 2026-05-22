@@ -207,6 +207,22 @@ document.addEventListener("DOMContentLoaded", (event) => {
 /* Web Audio API 音效交互 (Retro 8-bit) */
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
+    // 浏览器 Autoplay 策略：必须有用户交互才能解锁音频上下文
+    const unlockAudio = () => {
+        if (audioCtx.state === 'suspended') {
+            audioCtx.resume();
+        }
+        // 解锁后移除监听器，避免性能损耗
+        document.removeEventListener('click', unlockAudio);
+        document.removeEventListener('touchstart', unlockAudio);
+        document.removeEventListener('keydown', unlockAudio);
+    };
+    
+    // 监听全局的第一次点击/触摸/按键来解锁音频
+    document.addEventListener('click', unlockAudio);
+    document.addEventListener('touchstart', unlockAudio);
+    document.addEventListener('keydown', unlockAudio);
+
     function playTone(type, startFreq, endFreq, duration, vol) {
         if (audioCtx.state === 'suspended') audioCtx.resume();
         const t = audioCtx.currentTime;
